@@ -15,15 +15,25 @@ public class GameManager : MonoBehaviour {
 
     public Image blackImage;
 
+    private void OnEnable() {
+        SceneManager.sceneLoaded += OnSceneFinishedLoading;
+    }
+
+    private void OnDisable() {
+        SceneManager.sceneLoaded -= OnSceneFinishedLoading;
+    }
+
     void Awake() {
         // Singleton
         if (gm == null)
             gm = this;
         else if (gm != this)
             Destroy(this.gameObject);
+
+        DontDestroyOnLoad(this.gameObject);
     }
 
-    void Start() {
+    void OnSceneFinishedLoading(Scene scene, LoadSceneMode mode) {
         FadeFromBlack(1);
     }
 
@@ -42,19 +52,23 @@ public class GameManager : MonoBehaviour {
         blackImage.DOFade(0, speed);
     }
 
-    private IEnumerator LoadSceneDelayed(string name, float time) {
-        yield return new WaitForSeconds(time);
+    // Streamline scene loading
+    private IEnumerator LoadSceneDelayed(string name) {
+        float delay = 1.0f;
+        yield return new WaitForSeconds(delay);
         SceneManager.LoadScene(name, LoadSceneMode.Single);
     }
 
-    // Streamline scene loading
-    public void LoadScene(string name, float delay = 0.0f) {
-        if (delay > 0) {
-            StartCoroutine(LoadSceneDelayed(name, delay));
-        }
-        else {
-            SceneManager.LoadScene(name, LoadSceneMode.Single);
-        }
+    public void LoadScene(string name) {
+        StartCoroutine(LoadSceneDelayed(name));
+    }
+
+    public void QuitToMenu() {
+        LoadScene("MainMenu");
+    }
+
+    public void QuitToDesktop() {
+        Quit();
     }
 
     void Quit() {
