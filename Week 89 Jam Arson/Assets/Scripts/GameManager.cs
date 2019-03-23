@@ -11,29 +11,11 @@ using DG.Tweening;
 /// </summary>
 public class GameManager : MonoBehaviour {
 
-    public static GameManager gm;
+    public static GameObject gm;
 
     public Image blackImage;
 
-    private void OnEnable() {
-        SceneManager.sceneLoaded += OnSceneFinishedLoading;
-    }
-
-    private void OnDisable() {
-        SceneManager.sceneLoaded -= OnSceneFinishedLoading;
-    }
-
-    void Awake() {
-        // Singleton
-        if (gm == null)
-            gm = this;
-        else if (gm != this)
-            Destroy(this.gameObject);
-
-        DontDestroyOnLoad(this.gameObject);
-    }
-
-    void OnSceneFinishedLoading(Scene scene, LoadSceneMode mode) {
+    private void Start() {
         FadeFromBlack(1);
     }
 
@@ -64,6 +46,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void QuitToMenu() {
+        Time.timeScale = 1.0f; // In case game was paused when loading
         LoadScene("MainMenu");
     }
 
