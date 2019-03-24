@@ -4,7 +4,7 @@ using System;
 
 public class FlammableItem : MonoBehaviour
 {
-    #region Flammable Item Variables
+    #region Fields and Properties
     [SerializeField]
     private bool onFire; //Remove after testing
     private ParticleSystem fireParticleSystem;
