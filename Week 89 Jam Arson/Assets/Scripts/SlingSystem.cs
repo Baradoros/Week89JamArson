@@ -23,6 +23,7 @@ public class SlingSystem : MonoBehaviour
     {
         m_pIsAiming = false;
         m_pChargeValue = 0;
+        m_pCenterAim = new Vector3(transform.position.x, transform.position.y, 0);
     }
 
     // Update is called once per frame
@@ -31,8 +32,6 @@ public class SlingSystem : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && !m_pIsAiming)
         {
             m_pIsAiming = true;
-            m_pCenterAim = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
-            m_pCenterAim.z = 0;
             m_pDragCircle = Instantiate(m_dragCircle);
             Vector3 position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
             position.z = 0;
@@ -45,19 +44,19 @@ public class SlingSystem : MonoBehaviour
         
         if (m_pIsAiming)
         {
-            Vector2 newPosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y));
-
-            float angle = Vector2.SignedAngle(m_pCenterAim, newPosition) * Mathf.Deg2Rad;
+            Vector3 newPosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
+            newPosition.z = 0;
+            float angle = Vector3.SignedAngle(m_pCenterAim, newPosition, Vector3.forward) * Mathf.Deg2Rad;
+            angle += Mathf.PI / 2;
    
-            if (m_pChargeValue < m_chargeMax)
-            {
-                m_pChargeValue += m_chargeSpeed;
-                m_pDragCircle.transform.position = new Vector3(m_pCenterAim.x + m_pChargeValue * Mathf.Cos(angle), m_pCenterAim.y + m_pChargeValue * Mathf.Sin(angle));
-            } else
+            
+            m_pChargeValue = Vector3.Distance(newPosition, m_pCenterAim);
+            if (m_pChargeValue > m_chargeMax)
             {
                 m_pChargeValue = m_chargeMax;
-                m_pDragCircle.transform.position = new Vector3(m_pCenterAim.x + m_pChargeValue * Mathf.Cos(angle ), m_pCenterAim.y + m_pChargeValue * Mathf.Sin(angle));
             }
+            m_pDragCircle.transform.position = new Vector3(m_pCenterAim.x + m_pChargeValue * Mathf.Cos(angle), m_pCenterAim.y + m_pChargeValue * Mathf.Sin(angle));
+            
         } else if (m_pDragCircle != null && !m_pIsAiming)
         {
             // Here I want the dragcircle to fly towards centre
