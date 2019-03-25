@@ -10,14 +10,14 @@ public class ExplodeBarrelController : MonoBehaviour
     public GameObject particleExplode;
 
     //Radius of explosion
-    public float explodeRadius;
+    public float explodeRadius = 10f;
 
     //Min velocity to explode
-    public float minVelocity;
+    public float minVelocity = 5f;
 
     //Power of explosion
     [Range(-2.5f, 2.5f)]
-    public float power;
+    public float power = 2.5f;
 
     //barrel Rigidbody2D
     Rigidbody2D rb2Dbarrel;
@@ -61,6 +61,10 @@ public class ExplodeBarrelController : MonoBehaviour
                 if (!c.gameObject.CompareTag("World"))
                 {
                     //Making variables to force
+
+                    //Distance
+                    float d = (transform.position - c.transform.position).sqrMagnitude;
+
                     // X
                     float x = Random.Range(-25f, 25f);
                     if (x < 0 && x > -15f)
@@ -68,6 +72,8 @@ public class ExplodeBarrelController : MonoBehaviour
                     else if (x > 0 && x < 15f)
                         x = 15f;
                     x *= power;
+                    if(d!=0)
+                        x /= d;
                     
                     // Y
                     float y = Random.Range(-25f, 25f);
@@ -76,6 +82,8 @@ public class ExplodeBarrelController : MonoBehaviour
                     else if (y > 0 && y < 15f)
                         y = 15f;
                     y *= power;
+                    if (d != 0)
+                        y /= d;
 
                     //Add force
                     Vector2 dir = new Vector2(x, y);
