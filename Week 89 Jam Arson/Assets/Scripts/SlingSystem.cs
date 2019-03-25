@@ -29,7 +29,7 @@ public class SlingSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !m_pIsAiming)
+        if (Input.GetButtonDown("Fire1") && !m_pIsAiming)
         {
             m_pIsAiming = true;
             m_pDragCircle = Instantiate(m_dragCircle);
@@ -37,7 +37,7 @@ public class SlingSystem : MonoBehaviour
             position.z = 0;
             m_pDragCircle.transform.position = position;
             
-        } else if (Input.GetMouseButtonUp(0))
+        } else if (Input.GetButtonUp("Fire1"))
         {
             m_pIsAiming = false;
         }
