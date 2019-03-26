@@ -64,7 +64,6 @@ public class SlingSystem : MonoBehaviour
         newPosition.z = 0;
         float angle = Mathf.Atan2((newPosition.y - m_pCenterAim.y), (newPosition.x - m_pCenterAim.y)) + Mathf.PI; // to reverse the direction.
         Vector3 reversedUnitVector = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle));
-        Debug.Log(m_chargeMax.ToString() + " | " + Vector3.Distance(m_pCenterAim, newPosition).ToString());
         m_pChargeValue = Mathf.Min(m_chargeMax, Vector3.Distance(m_pCenterAim, newPosition));
 
         return reversedUnitVector * m_pChargeValue;
