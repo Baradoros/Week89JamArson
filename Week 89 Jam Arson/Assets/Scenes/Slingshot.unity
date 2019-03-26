@@ -261,16 +261,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2149491636328337061, guid: bc66b09cab5896a488fbd404ef97f698,
-        type: 3}
-      propertyPath: m_chargeSpeed
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 2149491636328337061, guid: bc66b09cab5896a488fbd404ef97f698,
-        type: 3}
-      propertyPath: m_dragCircle
-      value: 
-      objectReference: {fileID: 5542639505953922083, guid: 9628dfd1a9e09954999f3bc4b8de1ecf,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc66b09cab5896a488fbd404ef97f698, type: 3}

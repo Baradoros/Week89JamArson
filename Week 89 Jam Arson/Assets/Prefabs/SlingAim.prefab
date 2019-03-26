@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e5eb366a67d4584b99b8aca63283f74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_dragCircle: {fileID: 7469353645843779841, guid: aec41873349e3c240938c069786eaad4,
+  m_dragCircle: {fileID: 5542639505953922083, guid: 9628dfd1a9e09954999f3bc4b8de1ecf,
     type: 3}
-  m_chargeSpeed: 0.5
+  m_chargeSpeed: 0.05
   m_chargeMax: 4
