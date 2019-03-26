@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -32,10 +33,8 @@ public class SlingSystem : MonoBehaviour
         if (Input.GetButtonDown("Fire1") && !m_pIsAiming)
         {
             m_pIsAiming = true;
-            m_pDragCircle = Instantiate(m_dragCircle);
-            Vector3 position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
-            position.z = 0;
-            m_pDragCircle.transform.position = position;
+            m_pDragCircle = Instantiate(m_dragCircle); 
+            m_pDragCircle.transform.position = CalculatePositionOfCrosshair();
             
         } else if (Input.GetButtonUp("Fire1"))
         {
@@ -44,18 +43,7 @@ public class SlingSystem : MonoBehaviour
         
         if (m_pIsAiming)
         {
-            Vector3 newPosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
-            newPosition.z = 0;
-            float angle = Vector3.SignedAngle(m_pCenterAim, newPosition, Vector3.forward) * Mathf.Deg2Rad;
-            angle += Mathf.PI / 2;
-   
-            
-            m_pChargeValue = Vector3.Distance(newPosition, m_pCenterAim);
-            if (m_pChargeValue > m_chargeMax)
-            {
-                m_pChargeValue = m_chargeMax;
-            }
-            m_pDragCircle.transform.position = new Vector3(m_pCenterAim.x + m_pChargeValue * Mathf.Cos(angle), m_pCenterAim.y + m_pChargeValue * Mathf.Sin(angle));
+            m_pDragCircle.transform.position = CalculatePositionOfCrosshair();
             
         } else if (m_pDragCircle != null && !m_pIsAiming)
         {
@@ -68,5 +56,17 @@ public class SlingSystem : MonoBehaviour
             }
         }
         
+    }
+
+    private Vector3 CalculatePositionOfCrosshair()
+    {
+        Vector3 newPosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
+        newPosition.z = 0;
+        float angle = Mathf.Atan2((newPosition.y - m_pCenterAim.y), (newPosition.x - m_pCenterAim.y)) + Mathf.PI; // to reverse the direction.
+        Vector3 reversedUnitVector = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle));
+        Debug.Log(m_chargeMax.ToString() + " | " + Vector3.Distance(m_pCenterAim, newPosition).ToString());
+        m_pChargeValue = Mathf.Min(m_chargeMax, Vector3.Distance(m_pCenterAim, newPosition));
+
+        return reversedUnitVector * m_pChargeValue;
     }
 }
