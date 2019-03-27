@@ -8,9 +8,9 @@ public class FlammableItem : MonoBehaviour
     [SerializeField]
     public bool onFire = false;
     public bool isSpreadable = false;
-    public bool destroyable = true;
-    public float spreadDelay = 1.0f;
-    public float deathDelay = 3.0f;
+    public bool destroyOnCollision = false;
+    public float spreadDelay = 2.0f;
+    public float deathDelay = 5.0f;
     private ParticleSystem fireParticleSystem;
     public bool OnFire
     {   get
@@ -23,14 +23,7 @@ public class FlammableItem : MonoBehaviour
             if (onFire)
             {
                 StartFire();
-                if (destroyable)
-                {
-                    StartCoroutine(ActivateSpreadFire());
-                }
-                else
-                {
-                    isSpreadable = true;
-                }
+                StartCoroutine(ActivateSpreadFire());
             }
             else
             {
@@ -53,14 +46,7 @@ public class FlammableItem : MonoBehaviour
             if (onFire)
             {
                 StartFire();
-                if (destroyable)
-                {
-                    StartCoroutine(ActivateSpreadFire());
-                }
-                else
-                {
-                    isSpreadable = true;
-                }
+                StartCoroutine(ActivateSpreadFire());
             }
             else
             {
@@ -81,12 +67,10 @@ public class FlammableItem : MonoBehaviour
                     if (otherItem.OnFire && !OnFire)
                     {
                         OnFire = true;
-                        Debug.Log(this + " Not on fire | " + otherItem.OnFire + " " + OnFire);
                     }
                     else if (!otherItem.OnFire && OnFire)
                     {
                         otherItem.OnFire = true;
-                        Debug.Log(otherItem + " Not on fire | " + otherItem.OnFire + " " + OnFire);
                     }
                 }
             }
@@ -105,15 +89,17 @@ public class FlammableItem : MonoBehaviour
                     if (otherItem.OnFire && !OnFire)
                     {
                         OnFire = true;
-                        Debug.Log(this + " Not on fire | " + otherItem.OnFire + " " + OnFire);
                     }
                     else if (!otherItem.OnFire && OnFire)
                     {
                         otherItem.OnFire = true;
-                        Debug.Log(otherItem + " Not on fire | " + otherItem.OnFire + " " + OnFire);
                     }
                 }
             }
+        }
+        if (destroyOnCollision)
+        {
+            Destroy(gameObject);
         }
     }
 

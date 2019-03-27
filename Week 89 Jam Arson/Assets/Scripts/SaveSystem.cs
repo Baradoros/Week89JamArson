@@ -51,6 +51,7 @@ public class SaveSystem
         }
 
         string serializedString = JsonUtility.ToJson(saveObject);
+        Debug.Log(serializedString);
         if (string.IsNullOrEmpty(serializedString))
         {
             return false;
@@ -100,6 +101,18 @@ public class SaveSystem
         }
 
         loadedSaveObject = null;
+
+        return false;
+    }
+
+    public static bool SaveFilesExist()
+    {
+        if (Directory.Exists(saveFolder))
+        {
+            DirectoryInfo directoryInfo = new DirectoryInfo(saveFolder);
+            FileInfo[] fileInfos = directoryInfo.GetFiles("*" + saveFileExtension);
+            return fileInfos.Length > 0;
+        }
 
         return false;
     }

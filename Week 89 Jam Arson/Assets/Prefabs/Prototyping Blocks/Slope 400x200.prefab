@@ -73,12 +73,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: fd7a6ee003ada3b4a94f360ff5a3055a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 67cb25d205002024486799bc94240f95, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 4, y: 2.01}
+  m_Size: {x: 5.1, y: 2.18}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -122,8 +122,8 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.1, y: 2.18}
-    newSize: {x: 4, y: 2.01}
+    oldSize: {x: 4.07, y: 2.16}
+    newSize: {x: 5.1, y: 2.18}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -148,7 +148,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onFire: 0
-  fireParticleSystem: {fileID: 0}
+  isSpreadable: 0
+  destroyOnCollision: 0
+  spreadDelay: 2
+  deathDelay: 5
 --- !u!198 &3525407215027589514
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -222,7 +225,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0

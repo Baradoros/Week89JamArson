@@ -49,10 +49,12 @@ MonoBehaviour:
     type: 3}
   m_projectilePrefab: {fileID: 7647306346364089159, guid: f976023cc161a8a4bbc86d49d1edce85,
     type: 3}
+  mainCamera: {fileID: 0}
   m_chargeSpeed: 0.05
   m_chargeMax: 4
   timeResolution: 0.02
   maxTime: 3
+  massCompensationBias: 5
   VelocityOffset: 4
 --- !u!120 &8572034748201996643
 LineRenderer:

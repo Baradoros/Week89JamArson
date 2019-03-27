@@ -30,7 +30,7 @@ public class ExplodeBarrelController : MonoBehaviour
     void OnCollisionEnter2D(Collision2D col)
     {
         //if player hit barrel
-        if (col.gameObject.CompareTag("Player"))
+        if (col.gameObject.CompareTag("Untagged"))
         {
             Explode();
         }
@@ -50,20 +50,20 @@ public class ExplodeBarrelController : MonoBehaviour
         Destroy(effect, 3);
 
         //Taking a object near by barrel
-        Collider2D[] damage = Physics2D.OverlapCircleAll(transform.position, explodeRadius); 
+        Collider2D[] NearByObjectArray = Physics2D.OverlapCircleAll(transform.position, explodeRadius); 
 
-        foreach (Collider2D c in damage)
+        foreach (Collider2D nearByObject in NearByObjectArray)
         {
-            Rigidbody2D rb2d = c.GetComponent<Rigidbody2D>();
+            Rigidbody2D rb2d = nearByObject.GetComponent<Rigidbody2D>();
             //Checking that object can be move
             if (rb2d != null)
             {
-                if (!c.gameObject.CompareTag("World"))
+                if (!nearByObject.gameObject.CompareTag("World"))
                 {
                     //Making variables to force
 
                     //Distance
-                    float d = (transform.position - c.transform.position).sqrMagnitude;
+                    float d = (transform.position - nearByObject.transform.position).sqrMagnitude;
 
                     // X
                     float x = Random.Range(-25f, 25f);
@@ -88,6 +88,10 @@ public class ExplodeBarrelController : MonoBehaviour
                     //Add force
                     Vector2 dir = new Vector2(x, y);
                     rb2d.AddForce(dir, ForceMode2D.Impulse);
+                    if(nearByObject.GetComponent<FlammableItem>() != null)
+                    {
+                        nearByObject.GetComponent<FlammableItem>().OnFire = true;
+                    }
                 }
             }
         }

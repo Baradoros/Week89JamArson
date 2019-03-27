@@ -13,10 +13,28 @@ public class GameManager : MonoBehaviour {
 
     public static GameObject gm;
 
+    public static SaveObject initialSaveObject = new SaveObject();
+
+    public static SaveObject currentLoadedData;
+
     public Image blackImage;
 
     private void Start() {
         FadeFromBlack(1);
+        initialSaveObject.LevelDataArray[0] = new LevelData(1, 0, true);
+        initialSaveObject.LevelDataArray[1] = new LevelData(2, 0, false);
+        initialSaveObject.LevelDataArray[2] = new LevelData(3, 0, false);
+        initialSaveObject.LevelDataArray[3] = new LevelData(4, 0, false);
+        initialSaveObject.LevelDataArray[4] = new LevelData(5, 0, false);
+
+        if (!SaveSystem.SaveFilesExist())
+        {
+            SaveSystem.Save(initialSaveObject);
+            SaveSystem.Load(out currentLoadedData);
+        } else
+        {
+            SaveSystem.Load(out currentLoadedData);
+        }
     }
 
     // These are separate methods so they can be used in OnClicked methods for UI buttons

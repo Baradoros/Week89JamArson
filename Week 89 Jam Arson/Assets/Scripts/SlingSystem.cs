@@ -28,6 +28,7 @@ public class SlingSystem : MonoBehaviour
     #region Projectile line Variables
     public float timeResolution = 0.02f;
     public float maxTime = 10.0f;
+    public float massCompensationBias = 4.0f;
     public float VelocityOffset = 4.0f;
     private LineRenderer lineRenderer;
     #endregion
@@ -75,9 +76,9 @@ public class SlingSystem : MonoBehaviour
             m_pIsAiming = false;
             m_pProjectile = Instantiate(m_projectilePrefab);
             m_pProjectile.transform.position = transform.position;
-            m_pProjectile.GetComponent<Rigidbody2D>().AddForce((CalculatePositionOfCrosshair() - m_pCenterAim) * VelocityOffset);
-            mainCamera.followTarget = m_pProjectile;
-            mainCamera.shouldFollowTarget = true;
+            m_pProjectile.GetComponent<Rigidbody2D>().AddForce((CalculatePositionOfCrosshair() - m_pCenterAim) * VelocityOffset * massCompensationBias);
+            mainCamera.ShowFullLevel();
+            pauseShooting = true;
         }
 
         if (m_pIsAiming)
