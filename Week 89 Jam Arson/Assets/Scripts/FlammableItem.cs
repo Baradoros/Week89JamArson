@@ -6,8 +6,11 @@ public class FlammableItem : MonoBehaviour
 {
     #region Fields and Properties
     [SerializeField]
-    private bool onFire; //Remove after testing
-    [SerializeField]
+    public bool onFire = false;
+    public bool isSpreadable = false;
+    public bool destroyable = true;
+    public float spreadDelay = 1.0f;
+    public float deathDelay = 3.0f;
     private ParticleSystem fireParticleSystem;
     public bool OnFire
     {   get
@@ -19,12 +22,18 @@ public class FlammableItem : MonoBehaviour
             onFire = value;
             if (onFire)
             {
-                Debug.Log("Started");
                 StartFire();
+                if (destroyable)
+                {
+                    StartCoroutine(ActivateSpreadFire());
+                }
+                else
+                {
+                    isSpreadable = true;
+                }
             }
             else
             {
-                Debug.Log("Stopped");
                 StopFire();
             }
         }
@@ -43,30 +52,91 @@ public class FlammableItem : MonoBehaviour
         {
             if (onFire)
             {
-                Debug.Log("Started");
                 StartFire();
+                if (destroyable)
+                {
+                    StartCoroutine(ActivateSpreadFire());
+                }
+                else
+                {
+                    isSpreadable = true;
+                }
             }
             else
             {
-                Debug.Log("Stopped");
                 StopFire();
+            }
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (isSpreadable)
+        {
+            FlammableItem otherItem = collision.gameObject.GetComponent<FlammableItem>();
+            if (otherItem != null)
+            {
+                if (otherItem.OnFire || OnFire)
+                {
+                    if (otherItem.OnFire && !OnFire)
+                    {
+                        OnFire = true;
+                        Debug.Log(this + " Not on fire | " + otherItem.OnFire + " " + OnFire);
+                    }
+                    else if (!otherItem.OnFire && OnFire)
+                    {
+                        otherItem.OnFire = true;
+                        Debug.Log(otherItem + " Not on fire | " + otherItem.OnFire + " " + OnFire);
+                    }
+                }
             }
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        FlammableItem otherItem = collision.gameObject.GetComponent<FlammableItem>();
-        if (otherItem != null)
+        if (isSpreadable)
         {
-            if (otherItem.OnFire && !OnFire)
+            FlammableItem otherItem = collision.gameObject.GetComponent<FlammableItem>();
+            if (otherItem != null)
             {
-                OnFire = true;
-                Debug.Log(this + " Not on fire | " + otherItem.OnFire + " " + OnFire);
-            } else if(!otherItem.OnFire && OnFire)
+                if (otherItem.OnFire || OnFire)
+                {
+                    if (otherItem.OnFire && !OnFire)
+                    {
+                        OnFire = true;
+                        Debug.Log(this + " Not on fire | " + otherItem.OnFire + " " + OnFire);
+                    }
+                    else if (!otherItem.OnFire && OnFire)
+                    {
+                        otherItem.OnFire = true;
+                        Debug.Log(otherItem + " Not on fire | " + otherItem.OnFire + " " + OnFire);
+                    }
+                }
+            }
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (isSpreadable)
+        {
+            FlammableItem otherItem = collision.gameObject.GetComponent<FlammableItem>();
+            if (otherItem != null)
             {
-                otherItem.OnFire = true;
-                Debug.Log(otherItem + " Not on fire | " + otherItem.OnFire + " " + OnFire);
+                if (otherItem.OnFire || OnFire)
+                {
+                    if (otherItem.OnFire && !OnFire)
+                    {
+                        OnFire = true;
+                        Debug.Log(this + " Not on fire | " + otherItem.OnFire + " " + OnFire);
+                    }
+                    else if (!otherItem.OnFire && OnFire)
+                    {
+                        otherItem.OnFire = true;
+                        Debug.Log(otherItem + " Not on fire | " + otherItem.OnFire + " " + OnFire);
+                    }
+                }
             }
         }
     }
@@ -88,6 +158,15 @@ public class FlammableItem : MonoBehaviour
     private void StopFire()
     {
         fireParticleSystem.Stop();
+    }
+
+    // Used by LoadScene() to delay scene loading
+    private IEnumerator ActivateSpreadFire()
+    {
+        yield return new WaitForSeconds(spreadDelay);
+        isSpreadable = true;
+        yield return new WaitForSeconds(deathDelay);
+        Destroy(gameObject);
     }
     #endregion
 }

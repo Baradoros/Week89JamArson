@@ -4800,4 +4800,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onFire: 1
-  fireParticleSystem: {fileID: 0}
+  isSpreadable: 1
+  destroyable: 1
+  spreadDelay: 0.1
+  deathDelay: 10

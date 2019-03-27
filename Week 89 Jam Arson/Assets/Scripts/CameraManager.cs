@@ -45,6 +45,36 @@ public class CameraManager : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        // To see the whole map.
+        if (Input.GetButtonDown("Fire2"))
+        {
+            currentCameraPosition.x = (xLevelLeftExtreme + xLevelRightExtreme) / 2;
+            currentCameraPosition.x = Mathf.Min(currentCameraPosition.x, (xLevelLeftExtreme - cameraComponent.orthographicSize / growFunction.x) - cameraGrowOffset);
+
+            cameraComponent.orthographicSize = defaultOrthographicSize + ((currentCameraPosition.x - xLevelRightExtreme) / growFunction.x);
+            currentCameraPosition.y = (cameraComponent.orthographicSize - defaultOrthographicSize) * growFunction.y;
+
+            gameObject.transform.position = currentCameraPosition;
+        }
+
+        if (Input.GetButtonUp("Fire2"))
+        {
+            if (followTarget != null)
+            {
+                currentCameraPosition.x = Mathf.Max(followTarget.transform.position.x, xLevelRightExtreme);
+            } else
+            {
+                currentCameraPosition.x = xLevelRightExtreme;
+            }
+
+            currentCameraPosition.x = Mathf.Min(currentCameraPosition.x, (xLevelLeftExtreme - cameraComponent.orthographicSize / growFunction.x) - cameraGrowOffset);
+
+            cameraComponent.orthographicSize = defaultOrthographicSize + ((currentCameraPosition.x - xLevelRightExtreme) / growFunction.x);
+            currentCameraPosition.y = (cameraComponent.orthographicSize - defaultOrthographicSize) * growFunction.y;
+
+            gameObject.transform.position = currentCameraPosition;
+        }
+
         if (followTarget != null && cameraComponent != null)
         {
             if (shouldFollowTarget)
