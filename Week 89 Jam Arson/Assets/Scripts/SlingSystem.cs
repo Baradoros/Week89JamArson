@@ -14,9 +14,11 @@ public class SlingSystem : MonoBehaviour
     #region Slingshot Variables
     public GameObject m_dragCircle;
     public GameObject m_projectilePrefab;
+    public CameraManager mainCamera;
     public float m_chargeSpeed;
     public float m_chargeMax;
     private bool m_pIsAiming;
+    public static bool pauseShooting = false;
     private Vector3 m_pCenterAim;
     private GameObject m_pProjectile;
     private GameObject m_pDragCircle;
@@ -52,6 +54,11 @@ public class SlingSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (pauseShooting)
+        {
+            return;
+        }
+
         if (Input.GetButtonDown("Fire1") && !m_pIsAiming)
         {
             if(m_pDragCircle != null)
@@ -69,6 +76,8 @@ public class SlingSystem : MonoBehaviour
             m_pProjectile = Instantiate(m_projectilePrefab);
             m_pProjectile.transform.position = transform.position;
             m_pProjectile.GetComponent<Rigidbody2D>().AddForce((CalculatePositionOfCrosshair() - m_pCenterAim) * VelocityOffset);
+            mainCamera.followTarget = m_pProjectile;
+            mainCamera.shouldFollowTarget = true;
         }
 
         if (m_pIsAiming)
