@@ -2620,11 +2620,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pause Menu
       objectReference: {fileID: 0}
-    - target: {fileID: 4647207867512711426, guid: c14044e0299d86a4d88a07408c546f3e,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4647207867512711427, guid: c14044e0299d86a4d88a07408c546f3e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2695,5 +2690,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 970824809457420885}
+    - target: {fileID: 4647207866096056677, guid: c14044e0299d86a4d88a07408c546f3e,
+        type: 3}
+      propertyPath: m_UpdateMode
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c14044e0299d86a4d88a07408c546f3e, type: 3}

@@ -6,9 +6,10 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour {
 
     public GameObject pauseMenu;
+    public Animator panelAnim;
 
     // Broadcast events for game pausing. May not be needed but they're here just in case
-    // Setting Time.timeScale = 0.0f should be sufficient for pausing, but sometimes player controls still work during that and other things may need to happen when the game is paused (e.g. AutoSaving)
+    // Setting Time.timeScale = 0.00001f should be sufficient for pausing, but sometimes player controls still work during that and other things may need to happen when the game is paused (e.g. AutoSaving)
     public delegate void PauseAction();
     public static event PauseAction OnPaused;
 
@@ -50,14 +51,14 @@ public class PauseMenu : MonoBehaviour {
     public void PauseGame() {
         paused = true;
         OnPaused?.Invoke();
-        Time.timeScale = 0.0f;
         pauseMenu.SetActive(true);
+        panelAnim.SetTrigger("Open");
+        Time.timeScale = 0.00001f;
     }
 
     public void ResumeGame() {
         paused = false;
         OnResumed?.Invoke();
         Time.timeScale = 1.0f;
-        pauseMenu.SetActive(false);
     }
 }
