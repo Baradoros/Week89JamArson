@@ -51,7 +51,6 @@ public class SaveSystem
         }
 
         string serializedString = JsonUtility.ToJson(saveObject);
-        Debug.Log(serializedString);
         if (string.IsNullOrEmpty(serializedString))
         {
             return false;

@@ -145,7 +145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onFire: 0
   isSpreadable: 0
-  destroyable: 1
+  destroyOnCollision: 0
   spreadDelay: 2
   deathDelay: 5
 --- !u!199 &5668738918817152532
@@ -1661,7 +1661,7 @@ ParticleSystem:
     flipU: 0
     flipV: 0
   VelocityModule:
-    enabled: 0
+    enabled: 1
     x:
       serializedVersion: 2
       minMaxState: 0
@@ -1718,7 +1718,7 @@ ParticleSystem:
     y:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 5
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -2245,7 +2245,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-    inWorldSpace: 0
+    inWorldSpace: 1
   InheritVelocityModule:
     enabled: 0
     m_Mode: 0

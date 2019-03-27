@@ -115,12 +115,10 @@ public class FlammableItem : MonoBehaviour
                     if (otherItem.OnFire && !OnFire)
                     {
                         OnFire = true;
-                        Debug.Log(this + " Not on fire | " + otherItem.OnFire + " " + OnFire);
                     }
                     else if (!otherItem.OnFire && OnFire)
                     {
                         otherItem.OnFire = true;
-                        Debug.Log(otherItem + " Not on fire | " + otherItem.OnFire + " " + OnFire);
                     }
                 }
             }
@@ -151,6 +149,11 @@ public class FlammableItem : MonoBehaviour
     {
         yield return new WaitForSeconds(spreadDelay);
         isSpreadable = true;
+        SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.color = new Color(0.5f, 0.5f, 0.5f, 1.0f);
+        }
         yield return new WaitForSeconds(deathDelay);
         Destroy(gameObject);
     }

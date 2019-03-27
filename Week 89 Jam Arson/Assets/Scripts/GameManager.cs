@@ -30,8 +30,42 @@ public class GameManager : MonoBehaviour {
         if (!SaveSystem.SaveFilesExist())
         {
             SaveSystem.Save(initialSaveObject);
+        }
+
+        currentLoadedData = initialSaveObject;
+    }
+
+    public void UnlockAllLevels()
+    {
+        SaveObject saveObject = new SaveObject();
+        saveObject.LevelDataArray[0] = new LevelData(1, 0, true);
+        saveObject.LevelDataArray[1] = new LevelData(2, 0, true);
+        saveObject.LevelDataArray[2] = new LevelData(3, 0, true);
+        saveObject.LevelDataArray[3] = new LevelData(4, 0, true);
+        saveObject.LevelDataArray[4] = new LevelData(5, 0, true);
+        if (SaveSystem.Save(saveObject))
+        {
             SaveSystem.Load(out currentLoadedData);
-        } else
+        }
+    }
+
+    public void LockAllLevels()
+    {
+        SaveObject saveObject = new SaveObject();
+        saveObject.LevelDataArray[0] = new LevelData(1, 0, true);
+        saveObject.LevelDataArray[1] = new LevelData(2, 0, false);
+        saveObject.LevelDataArray[2] = new LevelData(3, 0, false);
+        saveObject.LevelDataArray[3] = new LevelData(4, 0, false);
+        saveObject.LevelDataArray[4] = new LevelData(5, 0, false);
+        if (SaveSystem.Save(saveObject))
+        {
+            SaveSystem.Load(out currentLoadedData);
+        }
+    }
+
+    public void LoadDataIfAny()
+    {
+        if (SaveSystem.SaveFilesExist())
         {
             SaveSystem.Load(out currentLoadedData);
         }
