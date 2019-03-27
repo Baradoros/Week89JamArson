@@ -7,6 +7,7 @@ public class FlammableItem : MonoBehaviour
     #region Fields and Properties
     [SerializeField]
     private bool onFire; //Remove after testing
+    [SerializeField]
     private ParticleSystem fireParticleSystem;
     public bool OnFire
     {   get
