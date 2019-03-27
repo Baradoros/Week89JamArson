@@ -54,11 +54,13 @@ public class PauseMenu : MonoBehaviour {
         pauseMenu.SetActive(true);
         panelAnim.SetTrigger("Open");
         Time.timeScale = 0.00001f;
+        SlingSystem.pauseShooting = true;
     }
 
     public void ResumeGame() {
         paused = false;
         OnResumed?.Invoke();
+        SlingSystem.pauseShooting = false;
         Time.timeScale = 1.0f;
     }
 }
