@@ -50,7 +50,7 @@ public class PauseMenu : MonoBehaviour {
     public void PauseGame() {
         paused = true;
         OnPaused?.Invoke();
-        Time.timeScale = 0.0f;
+        Time.timeScale = 0.00001f;
         pauseMenu.SetActive(true);
     }
 
