@@ -35,6 +35,14 @@ public class FlameViewer: MonoBehaviour
                 if (ParentButton.enabled)
                 {
                     ParentButton.enabled = false;
+                    Image[] images = ParentButton.GetComponentsInChildren<Image>();
+                    foreach (Image image in images)
+                    {
+                        if (image != null)
+                        {
+                            image.color = new Color(0.25f, 0.25f, 0.25f, 0.25f);
+                        }
+                    }
                     for (int index = 0; index < 3; index++)
                     {
                         FlameImages[index].enabled = false;
@@ -45,6 +53,14 @@ public class FlameViewer: MonoBehaviour
             else
             {
                 ParentButton.enabled = true;
+                Image[] images = ParentButton.GetComponentsInChildren<Image>();
+                foreach (Image image in images)
+                {
+                    if (image != null)
+                    {
+                        image.color = new Color(1f, 1f, 1f, 1f);
+                    }
+                }
             }
             for (int index = 0; index < 3; index++)
             {
