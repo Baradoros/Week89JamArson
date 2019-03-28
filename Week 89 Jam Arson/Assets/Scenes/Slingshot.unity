@@ -572,34 +572,9 @@ PrefabInstance:
       objectReference: {fileID: 2037017971}
     - target: {fileID: 4647207866104327315, guid: c14044e0299d86a4d88a07408c546f3e,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: FadeToBlack
-      objectReference: {fileID: 0}
-    - target: {fileID: 4647207866104327315, guid: c14044e0299d86a4d88a07408c546f3e,
-        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 2037017971}
-    - target: {fileID: 4647207866104327315, guid: c14044e0299d86a4d88a07408c546f3e,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: LoadScene
-      objectReference: {fileID: 0}
-    - target: {fileID: 4647207866104327315, guid: c14044e0299d86a4d88a07408c546f3e,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4647207866025814739, guid: c14044e0299d86a4d88a07408c546f3e,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4647207866096056673, guid: c14044e0299d86a4d88a07408c546f3e,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c14044e0299d86a4d88a07408c546f3e, type: 3}
 --- !u!4 &335221072 stripped
