@@ -131,7 +131,7 @@ public class FlammableItem : MonoBehaviour
     /// <summary>
     /// Stops Fire on the FlammableItem
     /// </summary>
-    private void StartFire()
+    public void StartFire()
     {
         fireParticleSystem.Play();
     }
@@ -145,7 +145,7 @@ public class FlammableItem : MonoBehaviour
     }
 
     // Used by LoadScene() to delay scene loading
-    private IEnumerator ActivateSpreadFire()
+    public IEnumerator ActivateSpreadFire()
     {
         yield return new WaitForSeconds(spreadDelay);
         isSpreadable = true;
