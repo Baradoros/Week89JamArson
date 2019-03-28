@@ -15,7 +15,6 @@ public class LevelManager : MonoBehaviour
 
     public float currentTime = 0.0f;
 
-    // Start is called before the first frame update
     void Start()
     {
         SlingSystem.pauseShooting = false;
@@ -37,7 +36,6 @@ public class LevelManager : MonoBehaviour
 
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!PauseLevel)
