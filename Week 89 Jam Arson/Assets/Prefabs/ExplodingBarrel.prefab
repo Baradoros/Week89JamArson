@@ -4678,11 +4678,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63bbc9a2caccde94292f38cc05468603, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particleExplode: {fileID: 7469353645843779841, guid: aec41873349e3c240938c069786eaad4,
+  particleExplode: {fileID: 512280728839494775, guid: bede779642beb7c41ae4eaee18cf8f9b,
     type: 3}
   explodeRadius: 5
   minVelocity: 5
-  power: 1
+  power: 2.5
 --- !u!114 &1706476434
 MonoBehaviour:
   m_ObjectHideFlags: 0
