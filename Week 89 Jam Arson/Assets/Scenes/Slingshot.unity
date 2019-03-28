@@ -2095,9 +2095,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 1
   score: 0
-  isLevelComplete: 0
   BuildingListObject: {fileID: 1470066119}
-  LevelCompleteObject: {fileID: 0}
   initialBuildings: 0
   buildingsLeft: 0
   currentTime: 0
@@ -2620,11 +2618,6 @@ PrefabInstance:
       propertyPath: levelManager
       value: 
       objectReference: {fileID: 1760351197}
-    - target: {fileID: 4745808262321084386, guid: abbb55d4dba54814288318afb08cbc03,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4745808262354207003, guid: abbb55d4dba54814288318afb08cbc03,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
