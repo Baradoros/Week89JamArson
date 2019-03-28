@@ -6,7 +6,6 @@ public class LevelManager : MonoBehaviour
 {
     public int level;
     public int score = 0;
-    public float timeLimit = 20.0f;
     public static bool PauseLevel = false;
 
     // The GameObject that has all the building Prefabs attached.
@@ -47,7 +46,7 @@ public class LevelManager : MonoBehaviour
             buildingsLeft = BuildingListObject.GetComponentsInChildren<FlammableItem>().Length;
             score = (initialBuildings - buildingsLeft) * 50;
 
-            if (buildingsLeft == 0 || currentTime > timeLimit)
+            if (buildingsLeft == 0)
             {
                 PauseLevel = true;
                 SaveObject saveObject;
