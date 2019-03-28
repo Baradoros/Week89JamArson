@@ -8,11 +8,9 @@ public class LevelManager : MonoBehaviour
     public int level;
     public int score = 0;
     public static bool PauseLevel = false;
-    public bool isLevelComplete = false;
 
     // The GameObject that has all the building Prefabs attached.
     public GameObject BuildingListObject;
-    public GameObject LevelCompleteObject;
     public int initialBuildings;
     public int buildingsLeft;
 
@@ -41,7 +39,7 @@ public class LevelManager : MonoBehaviour
 
     void Update()
     {
-        if (!PauseLevel && !isLevelComplete)
+        if (!PauseLevel)
         {
             currentTime += Time.deltaTime;
             buildingsLeft = BuildingListObject.GetComponentsInChildren<FlammableItem>().Length;
@@ -58,24 +56,8 @@ public class LevelManager : MonoBehaviour
                         saveObject.LevelDataArray[level].isUnlocked = true;
                     }
                     SaveSystem.Save(saveObject);
-                    LevelComplete();
                 }
             }
-        }
-    }
-
-    void LevelComplete()
-    {
-        isLevelComplete = true;
-        LevelCompleteObject.SetActive(true);
-        Time.timeScale = 0.00001f;
-    }
-
-    void LevelEnding()
-    {
-        if (isLevelComplete)
-        {
-            Time.timeScale = 1.0f;
         }
     }
 }

@@ -94,6 +94,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void LoadScene(string name) {
+        Time.timeScale = 1.0f;
         StartCoroutine(LoadSceneDelayed(name));
     }
 

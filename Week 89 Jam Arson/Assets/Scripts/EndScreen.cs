@@ -40,7 +40,8 @@ public class EndScreen : MonoBehaviour
 
     void EndGame() {
         Debug.Log("End Game");
-        endScreenContainer.SetActive(true);
+        endScreenContainer.SetActive(true); 
         SlingSystem.pauseShooting = true;
+        Time.timeScale = 0.00001f;
     }
 }
