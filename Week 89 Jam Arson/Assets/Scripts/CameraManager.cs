@@ -42,6 +42,7 @@ public class CameraManager : MonoBehaviour
             currentCameraPosition = gameObject.transform.position;
             defaultOrthographicSize = cameraComponent.orthographicSize;
         }
+        ShowFullLevel();
     }
 
     // Update is called once per frame

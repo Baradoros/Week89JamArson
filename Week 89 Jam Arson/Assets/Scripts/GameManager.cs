@@ -93,6 +93,12 @@ public class GameManager : MonoBehaviour {
         SceneManager.LoadScene(name, LoadSceneMode.Single);
     }
 
+    public void ReloadLevel()
+    {
+        Scene scene = SceneManager.GetActiveScene();
+        LoadScene(scene.name);
+    }
+
     public void LoadScene(string name) {
         Time.timeScale = 1.0f;
         StartCoroutine(LoadSceneDelayed(name));

@@ -26,13 +26,19 @@ public class ProjectileExplosion : MonoBehaviour
         foreach(Collider2D col in collisionsForForce)
         {
             FlammableItem flames = col.gameObject.GetComponent<FlammableItem>();
-            flames.onFire = true;
-            flames.StartFire();
-            flames.StartCoroutine("ActivateSpreadFire");
+            if (flames != null)
+            {
+                flames.onFire = true;
+                flames.StartFire();
+                flames.StartCoroutine("ActivateSpreadFire");
+            }
             rbForForce = col.GetComponent<Rigidbody2D>();
-            float rngForce = Random.Range(3.0f, 7.0f);
-            Vector2 force = new Vector2(rngForce, rngForce);
-            rbForForce.AddForce(force, ForceMode2D.Impulse);
+            if (rbForForce != null)
+            {
+                float rngForce = 3.0f;
+                Vector2 force = new Vector2(rngForce, rngForce);
+                rbForForce.AddForce(force, ForceMode2D.Impulse);
+            }
         }
 
     }
