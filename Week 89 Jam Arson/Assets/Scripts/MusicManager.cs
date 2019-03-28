@@ -31,10 +31,11 @@ public class MusicManager : MonoBehaviour {
         if (scene.name.Equals("MainMenu")) {
             menuTheme.Play();
             gameLoop.Stop();
-            
+
         }
         else {
-            gameLoop.Play();
+            if (!gameLoop.isPlaying)
+                gameLoop.Play();
             menuTheme.Stop();
         }
     }
