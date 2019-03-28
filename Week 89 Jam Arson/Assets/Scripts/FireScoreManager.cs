@@ -9,7 +9,7 @@ public class FireScoreManager : MonoBehaviour
     public LevelManager levelManager;
     public Image[] images;
 
-    private void Start() {
+    private void Update() {
         Debug.Log(levelManager.score);
         for (int i = 0; i < images.Length; i++) {
             images[i].color = Color.black;
