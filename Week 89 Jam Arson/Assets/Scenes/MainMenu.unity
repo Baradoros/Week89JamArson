@@ -1858,8 +1858,8 @@ RectTransform:
   m_Father: {fileID: 156886272}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.35, y: 0.75}
-  m_AnchorMax: {x: 0.65, y: 1}
+  m_AnchorMin: {x: 0.2, y: 0.65}
+  m_AnchorMax: {x: 0.8, y: 0.95}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
@@ -1896,7 +1896,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Arson
+  m_Text: Arsonist Proving Grounds
 --- !u!222 &695229242
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3012,7 +3012,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 8bc82430e77e26d428eae96b96468e7d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 42fd9b7ef262c6f408ca9e47eab722e9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
