@@ -43,5 +43,6 @@ public class EndScreen : MonoBehaviour
         endScreenContainer.SetActive(true); 
         SlingSystem.pauseShooting = true;
         Time.timeScale = 0.00001f;
+        levelManager.SaveGame();
     }
 }

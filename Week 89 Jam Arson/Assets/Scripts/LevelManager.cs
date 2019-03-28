@@ -44,20 +44,18 @@ public class LevelManager : MonoBehaviour
             currentTime += Time.deltaTime;
             buildingsLeft = BuildingListObject.GetComponentsInChildren<FlammableItem>().Length;
             score = (initialBuildings - buildingsLeft) * 50;
+        }
+    }
 
-            if (buildingsLeft == 0)
-            {
-                PauseLevel = true;
-                SaveObject saveObject;
-                if (SaveSystem.Load(out saveObject)) {
-                    saveObject.LevelDataArray[level - 1].score = Mathf.RoundToInt(((float)score / 50) * 3 / initialBuildings); //converting to 3 star system
-                    if(saveObject.LevelDataArray[level - 1].score > 0)
-                    {
-                        saveObject.LevelDataArray[level].isUnlocked = true;
-                    }
-                    SaveSystem.Save(saveObject);
-                }
+    public void SaveGame() {
+        SaveObject saveObject;
+        if (SaveSystem.Load(out saveObject)) {
+            saveObject.LevelDataArray[level - 1].score = Mathf.RoundToInt(((float)score / 50) * 3 / initialBuildings); //converting to 3 star system
+            if (saveObject.LevelDataArray[level - 1].score > 0) {
+                saveObject.LevelDataArray[level].isUnlocked = true;
             }
+            SaveSystem.Save(saveObject);
         }
     }
 }
+
