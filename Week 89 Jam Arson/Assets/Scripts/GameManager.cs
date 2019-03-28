@@ -31,7 +31,6 @@ public class GameManager : MonoBehaviour {
         {
             SaveSystem.Save(initialSaveObject);
         }
-
         currentLoadedData = initialSaveObject;
     }
 
@@ -65,9 +64,10 @@ public class GameManager : MonoBehaviour {
 
     public void LoadDataIfAny()
     {
+        Debug.Log(SaveSystem.SaveFilesExist());
         if (SaveSystem.SaveFilesExist())
         {
-            SaveSystem.Load(out currentLoadedData);
+            Debug.Log(SaveSystem.Load(out currentLoadedData));
         }
     }
 

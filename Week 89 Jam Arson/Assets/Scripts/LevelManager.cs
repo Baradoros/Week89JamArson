@@ -12,7 +12,7 @@ public class LevelManager : MonoBehaviour
     // The GameObject that has all the building Prefabs attached.
     public GameObject BuildingListObject;
     public int initialBuildings;
-    public int buildingsLeft;
+    public int buildingsLeft;   
 
     public float currentTime = 0.0f;
 
@@ -43,7 +43,7 @@ public class LevelManager : MonoBehaviour
         {
             currentTime += Time.deltaTime;
             buildingsLeft = BuildingListObject.GetComponentsInChildren<FlammableItem>().Length;
-            score = Mathf.RoundToInt(((float)(initialBuildings - buildingsLeft)) * 3 / initialBuildings);
+            score = Mathf.RoundToInt(((float)(initialBuildings - buildingsLeft)) * 3 / initialBuildings); //converting to 3 star system
 
             if (buildingsLeft == 0)
             {
@@ -57,7 +57,7 @@ public class LevelManager : MonoBehaviour
         SaveObject saveObject;
         if (SaveSystem.Load(out saveObject))
         {
-            saveObject.LevelDataArray[level - 1].score = Mathf.RoundToInt(((float)score / 50) * 3 / initialBuildings); //converting to 3 star system
+            saveObject.LevelDataArray[level - 1].score = score;
             if (saveObject.LevelDataArray[level - 1].score > 0)
             {
                 saveObject.LevelDataArray[level].isUnlocked = true;
