@@ -22,7 +22,7 @@ public class CameraManager : MonoBehaviour
     [Tooltip("Just an offset variable for full grown camera")]
     public float cameraGrowOffset = -0.5f;
 
-    private bool isZoomedOut = false;
+    public bool isZoomedOut = false;
     private Camera cameraComponent;
     private Vector3 currentCameraPosition;
     private float defaultOrthographicSize;
@@ -50,26 +50,13 @@ public class CameraManager : MonoBehaviour
         // To see the whole map.
         if (Input.GetButtonDown("Fire2"))
         {
-            ShowFullLevel();
-        }
-
-        if (Input.GetButtonUp("Fire2"))
-        {
-            isZoomedOut = false;
-            if (followTarget != null)
+            if (!isZoomedOut)
             {
-                currentCameraPosition.x = Mathf.Max(followTarget.transform.position.x, xLevelRightExtreme);
+                ShowFullLevel();
             } else
             {
-                currentCameraPosition.x = xLevelRightExtreme;
+                MinimizedView();
             }
-
-            currentCameraPosition.x = Mathf.Min(currentCameraPosition.x, (xLevelLeftExtreme - cameraComponent.orthographicSize / growFunction.x) - cameraGrowOffset);
-
-            cameraComponent.orthographicSize = defaultOrthographicSize + ((currentCameraPosition.x - xLevelRightExtreme) / growFunction.x);
-            currentCameraPosition.y = (cameraComponent.orthographicSize - defaultOrthographicSize) * growFunction.y;
-
-            gameObject.transform.position = currentCameraPosition;
         }
 
         if (followTarget != null && cameraComponent != null)
@@ -100,6 +87,26 @@ public class CameraManager : MonoBehaviour
     {
         isZoomedOut = true;
         currentCameraPosition.x = (xLevelLeftExtreme + xLevelRightExtreme) / 2;
+        currentCameraPosition.x = Mathf.Min(currentCameraPosition.x, (xLevelLeftExtreme - cameraComponent.orthographicSize / growFunction.x) - cameraGrowOffset);
+
+        cameraComponent.orthographicSize = defaultOrthographicSize + ((currentCameraPosition.x - xLevelRightExtreme) / growFunction.x);
+        currentCameraPosition.y = (cameraComponent.orthographicSize - defaultOrthographicSize) * growFunction.y;
+
+        gameObject.transform.position = currentCameraPosition;
+    }
+
+    public void MinimizedView()
+    {
+        isZoomedOut = false;
+        if (followTarget != null)
+        {
+            currentCameraPosition.x = Mathf.Max(followTarget.transform.position.x, xLevelRightExtreme);
+        }
+        else
+        {
+            currentCameraPosition.x = xLevelRightExtreme;
+        }
+
         currentCameraPosition.x = Mathf.Min(currentCameraPosition.x, (xLevelLeftExtreme - cameraComponent.orthographicSize / growFunction.x) - cameraGrowOffset);
 
         cameraComponent.orthographicSize = defaultOrthographicSize + ((currentCameraPosition.x - xLevelRightExtreme) / growFunction.x);

@@ -29,7 +29,6 @@ public class ProjectileExplosion : MonoBehaviour
             flames.onFire = true;
             flames.StartFire();
             flames.StartCoroutine("ActivateSpreadFire");
-            Debug.Log("Shook" + col.gameObject.name);
             rbForForce = col.GetComponent<Rigidbody2D>();
             float rngForce = Random.Range(3.0f, 7.0f);
             Vector2 force = new Vector2(rngForce, rngForce);
