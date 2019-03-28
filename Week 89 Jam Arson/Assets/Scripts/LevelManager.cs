@@ -11,8 +11,8 @@ public class LevelManager : MonoBehaviour
 
     // The GameObject that has all the building Prefabs attached.
     public GameObject BuildingListObject;
-    private int initialBuildings;
-    private int buildingsLeft;
+    public int initialBuildings;
+    public int buildingsLeft;
 
     public float currentTime = 0.0f;
 
