@@ -2385,8 +2385,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 5248fff1be568dd44bc838f921a9928f, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -3403,8 +3403,8 @@ MonoBehaviour:
     fire!
 
 
-    Can''t see the buildings in the distance do not panic we are arsonists after all.
-    Calmly right click and zoom out. Right click again to come back to aiming view.'
+    Can''t see the buildings in the distance? Don''t panic, just right click and zoom
+    out. Right click again to come back to aiming view.'
 --- !u!222 &1072154746
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6468,8 +6468,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: cda6a8e93d752ff4780bd9d1a4963060, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
