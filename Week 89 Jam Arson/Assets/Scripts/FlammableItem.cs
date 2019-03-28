@@ -154,6 +154,11 @@ public class FlammableItem : MonoBehaviour
         {
             spriteRenderer.color = new Color(0.5f, 0.5f, 0.5f, 1.0f);
         }
+        SpriteRenderer[] FlameChildren = gameObject.GetComponentsInChildren<SpriteRenderer>();
+        foreach(SpriteRenderer child in FlameChildren)
+        {
+            child.enabled = true;
+        }
         yield return new WaitForSeconds(deathDelay);
         Destroy(gameObject);
     }

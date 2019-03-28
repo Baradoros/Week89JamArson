@@ -3400,7 +3400,11 @@ MonoBehaviour:
 
 
     Click and drag from the firing point to begin aiming your molotov, release to
-    fire!'
+    fire!
+
+
+    Can''t see the buildings in the distance do not panic we are arsonists after all.
+    Calmly right click and zoom out. Right click again to come back to aiming view.'
 --- !u!222 &1072154746
 CanvasRenderer:
   m_ObjectHideFlags: 0
